@@ -1,0 +1,60 @@
+{
+  "name": "Recommendations",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "summary": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "assignedto": {
+      "type": "string",
+      "required": true
+    },
+    "assignedby": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "find"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "recommendations"
+    }
+  ],
+  "methods": {}
+}

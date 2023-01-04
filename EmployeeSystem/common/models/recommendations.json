@@ -1,0 +1,39 @@
+{
+  "name": "Recommendations",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "summary": {
+      "type": "string",
+      "required": true
+    },
+    "assignedto": {
+      "type": "string",
+      "required": true
+    },
+    "assignedby": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
