@@ -1,0 +1,16 @@
+{
+  "name": "node-red-contrib-receive-message",
+  "version": "1.0.0",
+  "description": "A node for receiving amqp message from a queue",
+  "main": "receive-message.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "node-red" : {
+        "nodes": {
+            "receive-message": "receive-message.js"
+        }
+    }
+}

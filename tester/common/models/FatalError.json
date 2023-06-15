@@ -1,0 +1,20 @@
+{
+    "name": "FatalError",
+    "plural": "FatalErrors",
+    "base": "BaseEntity",
+    "idInjection": true,
+    "mixins": {
+        "AuditFieldsMixin": true
+    },
+    "properties": {
+        "error": {
+            "type": "object"
+        },
+        "data": {
+            "type": "object"
+        }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": []
+}

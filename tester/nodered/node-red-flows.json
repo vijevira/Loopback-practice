@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "89461beb.d32e68",
+    "node": {
+      "id": "89461beb.d32e68",
+      "type": "tab",
+      "label": "Flow",
+      "disabled": false,
+      "info": "",
+      "callContext": {
+        "ctx": {},
+        "model": "NodeRedFlow"
+      }
+    }
+  }
+]

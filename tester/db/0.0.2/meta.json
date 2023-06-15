@@ -1,0 +1,16 @@
+{
+  "contexts": {
+    "default": {
+      "id": 0,
+      "tenantId": "default"
+    }
+  },
+  "files": [
+    {
+      "model": "NodeRedFlow",
+      "enabled": true,
+      "file": "../../flows/testflows.json",
+      "ctxId": "default"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    RED.nodes.registerType('log-error',{
+        category: 'FinaclePay',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"log-error";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="log-error">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+
+        <h3>Inputs</h3>
+
+        <h3>Outputs</h3>
+        
+        <h3>Models</h3>
+        <p><br>FatalError</p> 
+
+        <h3>Remote Methods</h3>
+        <p><br>FatalError.create()</p>  
+        
+        <h3>Errors</h3>
+        <p><br>Not able to log error into the Fatal DB............</p>
+
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="log-error">
+    <p>Logs error data into DB</p>
+</script> 

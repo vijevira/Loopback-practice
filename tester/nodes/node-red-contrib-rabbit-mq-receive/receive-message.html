@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    RED.nodes.registerType('receive-message',{
+        category: 'input',
+		color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            messageQueue:{
+                value:""
+            }
+        },
+        inputs:0,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"receive-message";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="receive-message">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+     <div class="form-row">
+        <label for="node-input-messageQueue"><i class="icon-tag"></i> Message Queue Name</label>
+        <input type="text" id="node-input-messageQueue" placeholder="Message Queue">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="receive-message">
+    <p>A node for receiveing amqp message from a queue</p>
+</script> 

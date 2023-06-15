@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    RED.nodes.registerType('rabbit-mq-ack',{
+        category: 'FinaclePay',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            messageQueue:{
+                value:""
+            }
+        },
+        inputs:1,
+        outputs:0,
+        icon: "file.png",
+        label: function() {
+            return this.name||"rabbit-mq-ack";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="rabbit-mq-ack">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-messageQueue"><i class="icon-tag"></i> Message Queue Name</label>
+        <input type="text" id="node-input-messageQueue" placeholder="Message Queue">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="rabbit-mq-ack">
+    <p>Node to aknowledge the queue for the record consumed</p>
+</script> 

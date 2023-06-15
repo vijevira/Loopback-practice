@@ -1,0 +1,30 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models"
+    ],
+    "mixins": ["loopback/common/mixins", "loopback/server/mixins"]
+  },
+  "MQRecord": {
+    "dataSource": "db",
+    "public": true
+  },
+  "FatalError": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Utility": {
+    "dataSource": null,
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "stringMatch": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+    "name": "MQRecord",
+    "plural": "MQRecords",
+    "base": "BaseEntity",
+    "strict": false,
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "mixins": {
+        "AuditFieldsMixin": true
+    },
+    "properties": {
+        "filter1": {
+            "type": "string",
+            "index": true
+        },
+        "filter2": {
+            "type": "string",
+            "index": true
+        },
+        "filter3": {
+            "type": "string",
+            "index": true
+        },
+        "filter4": {
+            "type": "string",
+            "index": true
+        },
+        "filter5": {
+            "type": "string",
+            "index": true
+        },
+        "filter6": {
+            "type": "string",
+            "index": true
+        },
+        "payload": {
+            "type": "object"
+        }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Utility",
+    "plural": "Utilities",
+    "base": "Model",
+    "strict": false,
+    "idInjection": false,
+    "options": {
+        "validateUpsert": true
+    },
+    "mixins": {},
+    "properties": {},
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+}

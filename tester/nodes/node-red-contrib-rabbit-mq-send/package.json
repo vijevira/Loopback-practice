@@ -1,0 +1,16 @@
+{
+  "name": "node-red-contrib-send-message",
+  "version": "1.0.0",
+  "description": "A node for sending amqp message to a queue",
+  "main": "send-message.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "node-red" : {
+        "nodes": {
+            "send-message": "send-message.js"
+        }
+    }
+}

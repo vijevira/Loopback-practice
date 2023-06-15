@@ -1,0 +1,17 @@
+{
+  "name": "node-red-contrib-rabbit-mq-ack",
+  "version": "1.0.0",
+  "description": "Node to aknowledge the queue for the record consumed",
+  "main": "rabbit-mq-ack.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  "author": "",
+  "license": "ISC",
+  "node-red" : {
+        "nodes": {
+            "rabbit-mq-ack": "rabbit-mq-ack.js"
+        }
+    }
+} 

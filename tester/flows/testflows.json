@@ -1,0 +1,225 @@
+[
+    {
+        "id": "144d771a.ff9ac9",
+        "node": {
+            "id": "144d771a.ff9ac9",
+            "type": "debug",
+            "z": "89461beb.d32e68",
+            "name": "Input",
+            "active": true,
+            "tosidebar": true,
+            "console": false,
+            "tostatus": false,
+            "complete": "true",
+            "targetType": "full",
+            "statusVal": "",
+            "statusType": "auto",
+            "x": 370,
+            "y": 60,
+            "wires": [],
+            "callContext": {
+                "ctx": {
+                    "requestId": "8d35156d-1fe7-4719-830e-a5b9f8c2484c"
+                },
+                "model": "NodeRedFlow"
+            }
+        }
+    },
+    {
+        "id": "2080bb86.670574",
+        "node": {
+            "id": "2080bb86.670574",
+            "type": "inject",
+            "z": "89461beb.d32e68",
+            "name": "",
+            "props": [
+                {
+                    "p": "payload"
+                }
+            ],
+            "repeat": "",
+            "crontab": "",
+            "once": false,
+            "onceDelay": 0.1,
+            "topic": "",
+            "payload": "{ \"id\": \"ff11d6d4-b015-4faa-a7ee-e566de347423\",   \"requestId\": \"90171f39-8a38-462d-98cd-1baad0e40c78\",   \"status\": \"SUCCESS\",   \"asyncHndInfo\": {     \"responseQueue\": \"NACH-OUTPY-CLIENT-HND-FX-RESPONSE\",     \"requestId\": \"90171f39-8a38-462d-98cd-1baad0e40c78\"   },\"request\": {     \"entityType\": \"PO\",     \"entityId\": \"90171f39-8a38-462d-98cd-1baad0e40c78\",     \"paysysId\": \"NACH\",     \"serviceId\": \"NCP\",     \"serviceType\": \"O\",     \"date\": \"2023-01-01T00:00:00.000Z\",     \"amount\": \"56.78\",     \"fromCcy\": \"HKD\",     \"toCcy\": \"INR\",     \"xchgRateInfCtrctId\": \"DEALREFNUM001\",     \"rateCode\": \"BUY\"   }}",
+            "payloadType": "json",
+            "x": 180,
+            "y": 220,
+            "wires": [
+                [
+                    "9d07bc99.8428a"
+                ]
+            ],
+            "callContext": {
+                "ctx": {
+                    "requestId": "8d35156d-1fe7-4719-830e-a5b9f8c2484c"
+                },
+                "model": "NodeRedFlow"
+            }
+        }
+    },
+    {
+        "id": "5be5fbbb.f69774",
+        "node": {
+            "id": "5be5fbbb.f69774",
+            "type": "function",
+            "z": "89461beb.d32e68",
+            "name": "",
+            "func": "let data = { \n    id: msg.payload.id,\n    response: {},\n    callContext: msg.callContext,\n    deliveryTag: msg.deliveryTag,\n    \n};\n  data.response.status = 'Error'\n\n  data.response.expiryDateTime = new Date().toISOString();\n\n// data.response.rate = 5;\nreturn data;",
+            "outputs": 1,
+            "noerr": 0,
+            "initialize": "",
+            "finalize": "",
+            "libs": [],
+            "x": 380,
+            "y": 120,
+            "wires": [
+                [
+                    "a9e72e9b.823cf",
+                    "bd7ebe5f.70eaa",
+                    "b3fa64d0.982e28"
+                ]
+            ],
+            "callContext": {
+                "ctx": {
+                    "requestId": "8d35156d-1fe7-4719-830e-a5b9f8c2484c"
+                },
+                "model": "NodeRedFlow"
+            }
+        }
+    },
+    {
+        "id": "89461beb.d32e68",
+        "node": {
+            "id": "89461beb.d32e68",
+            "type": "tab",
+            "label": "Async FX Test",
+            "disabled": false,
+            "info": "",
+            "callContext": {
+                "ctx": {
+                    "requestId": "8d35156d-1fe7-4719-830e-a5b9f8c2484c"
+                },
+                "model": "NodeRedFlow"
+            }
+        }
+    },
+    {
+        "id": "8a906441.fd6438",
+        "node": {
+            "id": "8a906441.fd6438",
+            "type": "receive-message",
+            "z": "89461beb.d32e68",
+            "name": "Read FX Request",
+            "messageQueue": "ASYNC-HND-FX-OUT-REQUEST",
+            "x": 170,
+            "y": 120,
+            "wires": [
+                [
+                    "5be5fbbb.f69774",
+                    "144d771a.ff9ac9"
+                ]
+            ],
+            "callContext": {
+                "ctx": {
+                    "requestId": "8d35156d-1fe7-4719-830e-a5b9f8c2484c"
+                },
+                "model": "NodeRedFlow"
+            }
+        }
+    },
+    {
+        "id": "9d07bc99.8428a",
+        "node": {
+            "id": "9d07bc99.8428a",
+            "type": "function",
+            "z": "89461beb.d32e68",
+            "name": "",
+            "func": "\nreturn msg.payload;",
+            "outputs": 1,
+            "noerr": 0,
+            "initialize": "",
+            "finalize": "",
+            "libs": [],
+            "x": 270,
+            "y": 180,
+            "wires": [
+                [
+                    "5be5fbbb.f69774"
+                ]
+            ],
+            "callContext": {
+                "ctx": {
+                    "requestId": "8d35156d-1fe7-4719-830e-a5b9f8c2484c"
+                },
+                "model": "NodeRedFlow"
+            }
+        }
+    },
+    {
+        "id": "a9e72e9b.823cf",
+        "node": {
+            "id": "a9e72e9b.823cf",
+            "type": "send-message",
+            "z": "89461beb.d32e68",
+            "name": "Send FX Response",
+            "messageQueue": "ASYNC-HND-FX-OUT-RESPONSE",
+            "serverUrl": "",
+            "x": 590,
+            "y": 120,
+            "wires": [],
+            "callContext": {
+                "ctx": {
+                    "requestId": "8d35156d-1fe7-4719-830e-a5b9f8c2484c"
+                },
+                "model": "NodeRedFlow"
+            }
+        }
+    },
+    {
+        "id": "b3fa64d0.982e28",
+        "node": {
+            "id": "b3fa64d0.982e28",
+            "type": "debug",
+            "z": "89461beb.d32e68",
+            "name": "Input",
+            "active": true,
+            "tosidebar": true,
+            "console": false,
+            "tostatus": false,
+            "complete": "true",
+            "targetType": "full",
+            "statusVal": "",
+            "statusType": "auto",
+            "x": 509,
+            "y": 177,
+            "wires": [],
+            "callContext": {
+                "ctx": {
+                    "requestId": "8d35156d-1fe7-4719-830e-a5b9f8c2484c"
+                },
+                "model": "NodeRedFlow"
+            }
+        }
+    },
+    {
+        "id": "bd7ebe5f.70eaa",
+        "node": {
+            "id": "bd7ebe5f.70eaa",
+            "type": "rabbit-mq-ack",
+            "z": "89461beb.d32e68",
+            "name": "",
+            "messageQueue": "",
+            "x": 580,
+            "y": 60,
+            "wires": [],
+            "callContext": {
+                "ctx": {
+                    "requestId": "8d35156d-1fe7-4719-830e-a5b9f8c2484c"
+                },
+                "model": "NodeRedFlow"
+            }
+        }
+    }
+]

@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    RED.nodes.registerType('send-message',{
+        category: 'output',
+		color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            messageQueue:{
+                value:""
+            },
+			serverUrl:{
+			value:""
+			}
+        },
+        inputs:1,
+        outputs:0,
+        icon: "fi.png",
+        label: function() {
+            return this.name||"send-message";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="send-message">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+     <div class="form-row">
+        <label for="node-input-messageQueue"><i class="icon-tag"></i> Message Queue Name</label>
+        <input type="text" id="node-input-messageQueue" placeholder="Message Queue">
+    </div>
+	     <div class="form-row">
+        <label for="node-input-serverUrl"><i class="icon-tag"></i> Server Url</label>
+        <input type="text" id="node-input-serverUrl" placeholder="Server Url ">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="send-message">
+    <p>A node for sending amqp message to a queue</p>
+</script> 
