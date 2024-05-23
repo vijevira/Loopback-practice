@@ -1,0 +1,116 @@
+<script type="text/javascript">
+  RED.nodes.registerType('enrich-model-dtls', {
+    category: 'General',
+    color: '#a6bbcf',
+    defaults: {
+      name: { value: "" },
+      config: { value: [] } // Single config array
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "file.png",
+    label: function () {
+      return this.name || "enrich-model-dtls";
+    },
+    oneditprepare: function () {
+      let node = this;
+      let config = this.config || []; // Single config array
+
+
+      config.forEach(function (configItem, index) {
+        addConfigRow(configItem, index);
+      });
+
+      document.getElementById('node-input-add-config').addEventListener('click', function () {
+        let index = document.querySelectorAll('#node-config-container .config-row').length;
+        addConfigRow({ key: '', value: '' }, index);
+      });
+
+      function addConfigRow(configItem, index) {
+        let container = document.getElementById('node-config-container');
+        let row = document.createElement('div');
+        row.classList.add('form-row', 'config-row');
+        row.setAttribute('data-index', index);
+
+        let labelKey = document.createElement('label');
+        labelKey.setAttribute('for', 'config-key-' + index);
+        labelKey.textContent = 'Key';
+        row.appendChild(labelKey);
+
+        let inputKey = document.createElement('input');
+        inputKey.setAttribute('type', 'text');
+        inputKey.setAttribute('id', 'config-key-' + index);
+        inputKey.value = configItem.key;
+        row.appendChild(inputKey);
+
+        let labelValue = document.createElement('label');
+        labelValue.setAttribute('for', 'config-value-' + index);
+        labelValue.textContent = 'Value';
+        row.appendChild(labelValue);
+
+        let inputValue = document.createElement('input');
+        inputValue.setAttribute('type', 'text');
+        inputValue.setAttribute('id', 'config-value-' + index);
+        inputValue.value = configItem.value;
+        row.appendChild(inputValue);
+
+        let removeButton = document.createElement('button');
+        removeButton.setAttribute('type', 'button');
+        removeButton.classList.add('remove-config');
+        removeButton.textContent = 'Remove';
+        row.appendChild(removeButton);
+
+        container.appendChild(row);
+
+        removeButton.addEventListener('click', function () {
+          row.remove();
+          config.splice(index, 1);
+          updateConfigIndexes();
+        });
+      }
+
+      function updateConfigIndexes() {
+        let container = document.getElementById('node-config-container');
+        let rows = container.querySelectorAll('.config-row');
+        rows.forEach(function (row, i) {
+          row.setAttribute('data-index', i);
+          let inputs = row.querySelectorAll('input');
+          inputs.forEach(function (input) {
+            let idParts = input.id.split('-');
+            idParts[idParts.length - 1] = i;
+            input.id = idParts.join('-');
+          });
+        });
+      }
+    },
+    oneditsave: function () {
+      let config = [];
+      let configRows = document.querySelectorAll('#node-config-container .config-row');
+
+      configRows.forEach(function (row) {
+        config.push({
+          key: row.querySelector('input[id^=config-key]').value,
+          value: row.querySelector('input[id^=config-value]').value
+        });
+      });
+
+      this.config = config;
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="enrich-model-dtls">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-cogs"></i> Configuration</label>
+        <div id="node-config-container"></div>
+        <button id="node-input-add-config" type="button">Add Configuration</button>
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="enrich-model-dtls">
+    <p>Generic node to enrich data from any model with configurations.</p>
+</script>
